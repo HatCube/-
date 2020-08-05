@@ -1,0 +1,25 @@
+const scriptName = "파일스트림";
+
+var 구분선 = ["ㅡ".repeat(10)];
+
+var 확인용 = ["읽기 결과를 확인하세요\n\n\n"];
+
+var day = new Date();
+
+function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
+
+if(msg.indexOf("/쓰기 ")!=-1){
+FileStream.append("/(파일주소)→sdcard부터/(파일이름).txt","\n"+(day.getYear()+1900)+"년"+(day.getMonth()+1)+"월"+(day.getDay())+"일"+"\n"+msg.substr(4)+"\n"+구분선);
+replier.reply("작성하였습니다.");
+}
+else if(msg.indexOf("/읽기")!=-1){
+replier.reply(확인용+"\u200b".repeat(500)+FileStream.read("/(파일주소)→sdcard부터/(파일이름).txt"));
+replier.reply("읽었습니다.");
+
+}
+else if(msg.indexOf("fs.갱신")!=-1){
+Api.reload("파일스트림");
+replier.reply("갱신했습니다.");
+}
+
+}
